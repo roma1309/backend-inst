@@ -1,47 +1,48 @@
 package com.instaApp.service.impl;
 
+import com.instaApp.exceptions.UserExistException;
 import com.instaApp.model.entity.UserEntity;
+import com.instaApp.model.enums.Role;
+import com.instaApp.payload.request.SignupRequest;
 import com.instaApp.repository.UserRepo;
+import com.instaApp.security.JWTTokenProvider;
 import com.instaApp.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
+@Service
+public class UserServiceImpl implements UserService {
 
-public class UserServiceImpl implements UserService, UserDetailsService {
-
+    public static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserRepo userRepo;
 
     @Autowired
-    public UserServiceImpl(UserRepo userRepo) {
+    public UserServiceImpl(BCryptPasswordEncoder bCryptPasswordEncoder, UserRepo userRepo) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.userRepo = userRepo;
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity userEntity = userRepo.findByEmail(username);
-        if (userEntity == null) {
-            throw new UsernameNotFoundException("Username not found with username " + username);
+    public UserEntity createUser(SignupRequest userIn) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail(userIn.getEmail());
+        userEntity.setPassword(bCryptPasswordEncoder.encode(userIn.getPassword()));
+        userEntity.setUsername(userIn.getUsername());
+        userEntity.setLastname(userIn.getLastname());
+        userEntity.setName(userIn.getFirstname());
+
+        userEntity.getRoles().add(Role.ROLE_USER);
+
+        try {
+            LOG.info("Saving user {}", userIn.getEmail());
+            return userRepo.save(userEntity);
+        } catch (Exception e) {
+            LOG.error("Error during registration. {}", e.getMessage());
+            throw new UserExistException("The user" + userIn.getUsername() + "already exist. Please check credentials");
         }
-
-        return build(userEntity);
-    }
-
-    private static UserEntity build(UserEntity userEntity) {
-        List<GrantedAuthority> authorities = userEntity.getRoles()
-                .stream()
-                .map(role -> new SimpleGrantedAuthority(role.name()))
-                .collect(Collectors.toList());
-
-        return new UserEntity(userEntity.getId(),
-                userEntity.getUsername(),
-                userEntity.getEmail(),
-                userEntity.getPassword(),
-                userEntity.getAuthorities());
     }
 }
