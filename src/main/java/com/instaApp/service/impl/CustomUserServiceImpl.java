@@ -2,7 +2,6 @@ package com.instaApp.service.impl;
 
 import com.instaApp.model.entity.UserEntity;
 import com.instaApp.repository.UserRepo;
-import com.instaApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -21,11 +21,11 @@ public class UserEntity implements UserDetails {
     private String name;
     @Column(nullable = false)
     private String lastname;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, updatable = true)
     private String username;
     @Column(unique = true)
     private String email;
-    private String age;
+    private int age;
     private String password;
     @Column(columnDefinition = "text")
     private String bio;
@@ -120,11 +120,11 @@ public class UserEntity implements UserDetails {
         this.email = email;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
