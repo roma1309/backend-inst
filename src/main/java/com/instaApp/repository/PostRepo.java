@@ -12,4 +12,6 @@ public interface PostRepo extends JpaRepository<PostEntity, Long> {
     List<PostEntity> findByOrderByCreatedDateDesc();
 
     PostEntity findByIdAndUser(Long id, UserEntity user);
+
+    void delete(PostEntity postEntity);
 }

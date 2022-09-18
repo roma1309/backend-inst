@@ -55,10 +55,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity updateUser(UserDTO userDTO, Principal principal) {
-        return userRepo.save(mappingUserDtoUtils.mapToUserEntity(userDTO, getUserById(principal)));
+        return userRepo.save(mappingUserDtoUtils.mapToUserEntity(userDTO, getUserByPrincipal(principal)));
     }
 
-    private UserEntity getUserById(Principal principal) {
+    private UserEntity getUserByPrincipal(Principal principal) {
         String username = principal.getName();
         UserEntity userEntity = userRepo.findByEmail(username);
         if (userEntity == null) {
