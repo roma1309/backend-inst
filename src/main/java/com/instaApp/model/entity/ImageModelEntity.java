@@ -13,6 +13,8 @@ public class ImageModelEntity {
     private byte[] imageBytes;
     private Long userId;
     private Long postId;
+    @Column(nullable = false)
+    private String name;
 
     public ImageModelEntity() {
     }
@@ -35,6 +37,14 @@ public class ImageModelEntity {
 
     public Long getUserId() {
         return userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setUserId(Long userId) {
