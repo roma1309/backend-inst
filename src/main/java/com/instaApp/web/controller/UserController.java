@@ -17,7 +17,7 @@ import java.security.Principal;
 
 @RestController
 @CrossOrigin
-@RequestMapping("api/user")
+@RequestMapping("api/users")
 public class UserController {
     private final UserService userService;
     private final MappingUserDtoUtils mappingUserDtoUtils;
