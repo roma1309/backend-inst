@@ -10,5 +10,10 @@ public interface UserService {
 
 
     public UserEntity createUser(SignupRequest userIn);
+
     public UserEntity updateUser(UserDTO userDTO, Principal principal);
+
+    public UserEntity getCurrentUser(Principal principal);
+
+    UserEntity getUserById(long userId);
 }

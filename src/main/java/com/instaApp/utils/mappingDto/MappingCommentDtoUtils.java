@@ -18,4 +18,12 @@ public class MappingCommentDtoUtils {
         commentEntity.setUsername(userEntity.getUsername());
         return commentEntity;
     }
+
+    public CommentDTO mapToCommentDto(CommentEntity commentEntity) {
+        CommentDTO commentDTO = new CommentDTO();
+        commentDTO.setMessage(commentEntity.getMessage());
+        commentDTO.setUsername(commentEntity.getUsername());
+        commentDTO.setId(commentEntity.getId());
+        return commentDTO;
+    }
 }

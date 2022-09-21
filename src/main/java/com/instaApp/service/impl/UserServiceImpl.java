@@ -58,6 +58,20 @@ public class UserServiceImpl implements UserService {
         return userRepo.save(mappingUserDtoUtils.mapToUserEntity(userDTO, getUserByPrincipal(principal)));
     }
 
+    @Override
+    public UserEntity getCurrentUser(Principal principal) {
+        return getUserByPrincipal(principal);
+    }
+
+    @Override
+    public UserEntity getUserById(long userId) {
+        UserEntity userEntity = userRepo.findById(userId);
+        if (userEntity == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        return userEntity;
+    }
+
     private UserEntity getUserByPrincipal(Principal principal) {
         String username = principal.getName();
         UserEntity userEntity = userRepo.findByEmail(username);
