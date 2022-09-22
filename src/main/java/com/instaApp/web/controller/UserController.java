@@ -32,7 +32,9 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<UserDTO> getCurrentUser(Principal principal) {
+        System.out.println(principal.getName());
         UserEntity userEntity = userService.getCurrentUser(principal);
+        System.out.println(userEntity.toString());
         UserDTO userDTO = mappingUserDtoUtils.mapToUserDto(userEntity);
         return new ResponseEntity(userDTO, HttpStatus.OK);
     }

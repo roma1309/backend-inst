@@ -7,9 +7,8 @@ public class UserDTO {
     private String firstname;
     @NotEmpty
     private String lastname;
-    private int age;
+    private Integer age;
     private String bio;
-    @NotEmpty
     private String username;
 
     public String getFirstname() {
@@ -28,11 +27,11 @@ public class UserDTO {
         this.lastname = lastname;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -50,5 +49,16 @@ public class UserDTO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", age=" + age +
+                ", bio='" + bio + '\'' +
+                ", username='" + username + '\'' +
+                '}';
     }
 }

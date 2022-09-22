@@ -74,7 +74,8 @@ public class UserServiceImpl implements UserService {
 
     private UserEntity getUserByPrincipal(Principal principal) {
         String username = principal.getName();
-        UserEntity userEntity = userRepo.findByEmail(username);
+        UserEntity userEntity = userRepo.findByUsername(username);
+        System.out.println(userEntity.getEmail());
         if (userEntity == null) {
             new UsernameNotFoundException("Username not found with username - " + username);
         }

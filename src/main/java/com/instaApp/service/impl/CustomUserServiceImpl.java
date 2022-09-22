@@ -29,7 +29,6 @@ public class CustomUserServiceImpl implements UserDetailsService {
         if (userEntity == null) {
             throw new UsernameNotFoundException("Username not found with username " + username);
         }
-
         return build(userEntity);
     }
 

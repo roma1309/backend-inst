@@ -15,6 +15,7 @@ public class MappingCommentDtoUtils {
         CommentEntity commentEntity = new CommentEntity();
         commentEntity.setPost(postEntity);
         commentEntity.setMessage(commentDTO.getMessage());
+        commentEntity.setUserId(userEntity.getId());
         commentEntity.setUsername(userEntity.getUsername());
         return commentEntity;
     }

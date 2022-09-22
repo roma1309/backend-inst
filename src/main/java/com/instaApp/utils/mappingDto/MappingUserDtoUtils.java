@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 public class MappingUserDtoUtils {
 
     public UserEntity mapToUserEntity(UserDTO userDTO, UserEntity userEntity) {
+       // System.out.println(userDTO.toString());
         userEntity.setName(userDTO.getFirstname());
         userEntity.setLastname(userDTO.getLastname());
         userEntity.setBio(userDTO.getBio());
@@ -18,6 +19,7 @@ public class MappingUserDtoUtils {
 
     public UserDTO mapToUserDto(UserEntity userEntity) {
         UserDTO userDTO = new UserDTO();
+
         userDTO.setAge(userEntity.getAge());
         userDTO.setBio(userEntity.getBio());
         userDTO.setUsername(userEntity.getUsername());

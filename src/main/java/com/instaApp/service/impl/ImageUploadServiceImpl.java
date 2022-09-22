@@ -131,7 +131,7 @@ public class ImageUploadServiceImpl implements ImageUploadService {
 
     private UserEntity getUserByPrincipal(Principal principal) {
         String username = principal.getName();
-        UserEntity userEntity = userRepo.findByEmail(username);
+        UserEntity userEntity = userRepo.findByUsername(username);
         if (userEntity == null) {
             new UsernameNotFoundException("Username not found with username - " + username);
         }

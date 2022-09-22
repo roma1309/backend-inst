@@ -25,7 +25,7 @@ public class UserEntity implements UserDetails {
     private String username;
     @Column(unique = true)
     private String email;
-    private int age;
+    private Integer age;
     private String password;
     @Column(columnDefinition = "text")
     private String bio;
@@ -120,12 +120,8 @@ public class UserEntity implements UserDetails {
         this.email = email;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     @Override
@@ -176,5 +172,23 @@ public class UserEntity implements UserDetails {
 
     public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
         this.authorities = authorities;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", password='" + password + '\'' +
+                ", bio='" + bio +
+                '}';
     }
 }
