@@ -88,6 +88,7 @@ public class ImageUploadServiceImpl implements ImageUploadService {
         imageModelEntity.setName(file.getOriginalFilename());
         imageModelEntity.setPostId(postEntity.getId());
         imageModelEntity.setImageBytes(compressByte(file.getBytes()));
+        System.out.println(imageModelEntity.getImageBytes());
         LOG.info("Uploading image  to post {}", postEntity.getId());
         return imageModelRepo.save(imageModelEntity);
     }

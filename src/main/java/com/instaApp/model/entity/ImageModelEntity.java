@@ -9,7 +9,7 @@ public class ImageModelEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Lob
-    //@Column(columnDefinition = "LONGBLOB")
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] imageBytes;
     private Long userId;
     private Long postId;

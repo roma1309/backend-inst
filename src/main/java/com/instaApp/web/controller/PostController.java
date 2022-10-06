@@ -68,8 +68,10 @@ public class PostController {
     @PostMapping("/{postId}/{username}/like")
     public ResponseEntity<PostDTO> likePost(@PathVariable("postId") String postId
             , @PathVariable("username") String username) {
+        System.out.println("loke leke leke; eke");
         PostEntity postEntity = postService.likePost(Long.parseLong(postId), username);
         PostDTO postDTO = mappingPostDtoUtils.mapToPostDto(postEntity);
+        System.out.println(postDTO.toString());
         return new ResponseEntity<>(postDTO, HttpStatus.OK);
     }
 

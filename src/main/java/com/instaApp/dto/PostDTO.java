@@ -67,4 +67,17 @@ public class PostDTO {
     public void setUsersLikes(Set<String> usersLikes) {
         this.usersLikes = usersLikes;
     }
+
+    @Override
+    public String toString() {
+        return "PostDTO{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", location='" + location + '\'' +
+                ", title='" + title + '\'' +
+                ", caption='" + caption + '\'' +
+                ", likes=" + likes +
+                ", usersLikes=" + usersLikes +
+                '}';
+    }
 }
