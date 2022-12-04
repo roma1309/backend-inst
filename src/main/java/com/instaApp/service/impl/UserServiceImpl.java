@@ -35,6 +35,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity createUser(SignupRequest userIn) {
+        if (!userIn.getPassword().equals(userIn.getConfirmPassword())) {
+            throw new UserExistException("Please check password and confirmPassword");
+        }
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(userIn.getEmail());
         userEntity.setPassword(bCryptPasswordEncoder.encode(userIn.getPassword()));

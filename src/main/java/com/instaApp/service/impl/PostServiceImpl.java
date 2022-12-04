@@ -58,7 +58,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostEntity> findAllPost() {
-        return postRepo.findAll();
+        return postRepo.findByOrderByCreatedDateDesc();
     }
 
     @Override

@@ -46,6 +46,7 @@ public class UserController {
 
     @PutMapping("/update")
     public ResponseEntity<Object> putUser(@Valid @RequestBody UserDTO userDTO, BindingResult bindingResult, Principal principal) {
+        System.out.println(userDTO.toString());
         ResponseEntity<Object> errors = errorValidation.mapValidationService(bindingResult);
         if (!ObjectUtils.isEmpty(errors)) {
             return errors;
